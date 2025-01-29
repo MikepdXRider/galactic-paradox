@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu8wdo1ylwr5"]
+
+[ext_resource type="Script" path="res://scenes/despawner/despawner.gd" id="1_d6f6t"]
+
+[node name="Despawner" type="Node2D"]
+script = ExtResource("1_d6f6t")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(1e-05, 1e-05)
+
+[node name="DespawnTimer" type="Timer" parent="."]

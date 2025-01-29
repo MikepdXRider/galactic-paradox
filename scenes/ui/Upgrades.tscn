@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt3f6r1e64nmn"]
+
+[ext_resource type="PackedScene" uid="uid://cmle5r0giep3m" path="res://scenes/ui/GameStateControl.tscn" id="1_f0nuy"]
+[ext_resource type="Script" path="res://scenes/ui/upgrades.gd" id="1_fonx8"]
+[ext_resource type="PackedScene" uid="uid://dr7hvbkcab3hf" path="res://scenes/ui/CurrencyCount.tscn" id="2_3v5wi"]
+
+[node name="Upgrades" type="CanvasLayer"]
+script = ExtResource("1_fonx8")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "UPGRADES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrencyCount" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_3v5wi")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 2
+
+[node name="GameStateControl" parent="Panel/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("1_f0nuy")]
+layout_mode = 2
+target_key = 1
+
+[node name="GameStateControl2" parent="Panel/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("1_f0nuy")]
+layout_mode = 2
+
+[node name="GameStateControl3" parent="Panel/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("1_f0nuy")]
+layout_mode = 2
+target_key = 4
+
+[node name="GameStateControl4" parent="Panel/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("1_f0nuy")]
+layout_mode = 2
+target_key = 5
+
+[node name="GameStateControl5" parent="Panel/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("1_f0nuy")]
+layout_mode = 2
+target_key = 6
+
+[node name="GameStateControl6" parent="Panel/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("1_f0nuy")]
+layout_mode = 2
+target_key = 9
+
+[node name="GameStateControl7" parent="Panel/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("1_f0nuy")]
+layout_mode = 2
+target_key = 11
+
+[node name="GameStateControl8" parent="Panel/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("1_f0nuy")]
+layout_mode = 2
+target_key = 10
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Close
+"
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Button" to="." method="_close"]

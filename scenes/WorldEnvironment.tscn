@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://qx80wc1ffg1h"]
+
+[sub_resource type="Environment" id="Environment_86qwy"]
+glow_enabled = true
+glow_hdr_threshold = 1.2
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_86qwy")

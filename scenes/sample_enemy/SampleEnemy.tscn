@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://dqn4dewv6gec8"]
+
+[ext_resource type="Script" path="res://scenes/sample_enemy/sample_enemy.gd" id="1_3w853"]
+[ext_resource type="PackedScene" uid="uid://dcop1v5uchqyy" path="res://scenes/effects/destruction/DestructionParticles.tscn" id="2_xhygx"]
+[ext_resource type="Texture2D" uid="uid://b1p2qmxwje8dn" path="res://assets/sample_enemy_8x8_grey.png" id="3_x7piu"]
+[ext_resource type="PackedScene" uid="uid://cu8wdo1ylwr5" path="res://scenes/despawner/Despawner.tscn" id="4_iq0at"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjbeo"]
+size = Vector2(8, 8)
+
+[sub_resource type="Animation" id="Animation_mw82y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ddhla"]
+resource_name = "spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l6ims"]
+_data = {
+"RESET": SubResource("Animation_mw82y"),
+"spin": SubResource("Animation_ddhla")
+}
+
+[node name="SampleEnemySmall" type="RigidBody2D" groups=["mob"]]
+mass = 0.1
+gravity_scale = 0.0
+script = ExtResource("1_3w853")
+destruction_effect = ExtResource("2_xhygx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tjbeo")
+
+[node name="TextureRect" type="TextureRect" parent="CollisionShape2D"]
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+texture = ExtResource("3_x7piu")
+
+[node name="ColorRect" type="ColorRect" parent="CollisionShape2D"]
+self_modulate = Color(1.5, 1, 1, 1)
+offset_left = -4.0
+offset_top = -4.0
+offset_right = -3.0
+offset_bottom = -3.0
+color = Color(2, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CollisionShape2D"]
+self_modulate = Color(1.5, 1, 1, 1)
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 4.0
+offset_bottom = 4.0
+color = Color(2, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l6ims")
+}
+autoplay = "spin"
+
+[node name="DropLootPosition" type="Marker2D" parent="."]
+
+[node name="Despawner" parent="." instance=ExtResource("4_iq0at")]
+scale = Vector2(0.25, 0.25)
+type = 1

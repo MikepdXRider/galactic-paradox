@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyvs18fwl5bq2"]
+
+[ext_resource type="Script" path="res://scenes/projectiles/default/default_projectile.gd" id="1_twgk8"]
+[ext_resource type="PackedScene" uid="uid://cnrl0s5tgqmux" path="res://scenes/effects/impact/DefaultImpactEffect.tscn" id="2_hl2yw"]
+[ext_resource type="Texture2D" uid="uid://drfts8p3vdhl0" path="res://assets/green_pixel_1be649_6x2.png" id="3_uj86w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edhie"]
+size = Vector2(6, 2)
+
+[node name="DefaultBullet" type="Area2D"]
+position = Vector2(0, -1)
+script = ExtResource("1_twgk8")
+IMPACT_EFFECT = ExtResource("2_hl2yw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 1)
+shape = SubResource("RectangleShape2D_edhie")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1.0
+offset_bottom = 1.0
+texture = ExtResource("3_uj86w")
+
+[node name="LifeTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

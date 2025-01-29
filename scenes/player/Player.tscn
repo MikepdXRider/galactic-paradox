@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3fcg1g6ywsrv"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_pqafe"]
+[ext_resource type="PackedScene" uid="uid://dyvs18fwl5bq2" path="res://scenes/projectiles/default/DefaultProjectile.tscn" id="2_2ndse"]
+[ext_resource type="Texture2D" uid="uid://dgu7p7qwv316j" path="res://assets/player_ship_001.png" id="2_eh843"]
+[ext_resource type="Script" path="res://scenes/player/gravitational_field.gd" id="3_vu7n1"]
+[ext_resource type="Texture2D" uid="uid://b0su78amigvvr" path="res://assets/blue_bubble_32x32.png" id="4_4pvvr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pc3da"]
+radius = 24.4131
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_pqafe")
+PRIMARY_PROJECTILE = ExtResource("2_2ndse")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(8, -8)
+rotation = 1.5708
+scale = Vector2(0.398701, 0.394422)
+polygon = PackedVector2Array(20, 0, 40, 28, 29, 37, 24, 31, 17, 31, 12, 37, 0, 27)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.00002
+offset_right = 8.0
+offset_bottom = 7.99994
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_eh843")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Barrel" type="Marker2D" parent="."]
+position = Vector2(8, 0)
+
+[node name="FireRateTimer" type="Timer" parent="."]
+
+[node name="GravitationalField" type="Area2D" parent="."]
+script = ExtResource("3_vu7n1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravitationalField"]
+shape = SubResource("CircleShape2D_pc3da")
+
+[node name="TextureRect" type="TextureRect" parent="GravitationalField/CollisionShape2D"]
+self_modulate = Color(1, 1, 1, 0.05)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_4pvvr")
+
+[connection signal="area_entered" from="GravitationalField" to="GravitationalField" method="_on_area_entered"]

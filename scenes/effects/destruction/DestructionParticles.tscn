@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcop1v5uchqyy"]
+
+[ext_resource type="Script" path="res://scenes/effects/destruction/destruction_particles.gd" id="1_k87qq"]
+
+[sub_resource type="Gradient" id="Gradient_p38nu"]
+offsets = PackedFloat32Array(0, 0.827133, 1)
+colors = PackedColorArray(0.796078, 0.211765, 0, 1, 1, 1, 0.266667, 1, 1, 1, 0.266667, 0)
+
+[node name="DestructionParticles" type="CPUParticles2D"]
+emitting = false
+amount = 25
+one_shot = true
+speed_scale = 1.5
+explosiveness = 0.75
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+orbit_velocity_min = -1.0
+scale_amount_max = 2.0
+color = Color(1, 0.886275, 0.301961, 1)
+color_ramp = SubResource("Gradient_p38nu")
+script = ExtResource("1_k87qq")
+
+[node name="Timer" type="Timer" parent="."]
