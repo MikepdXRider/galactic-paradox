@@ -11,7 +11,9 @@ config_version=5
 [application]
 
 config/name="Galactic Paradox"
+run/main_scene="res://scenes/Game.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/image="res://assets/background_1280x1080.png"
 config/icon="res://assets/player_ship_001.png"
 
 [autoload]
