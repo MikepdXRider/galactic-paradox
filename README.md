@@ -49,17 +49,17 @@
 ### Example/WIP Abilities
 
 #### Offensive:
-- SAVAGE:
-	- Player: +15% damage to all attacks.
-	- Enemy: +10% spawn rate.
-
-- PRECISION:
-	- Player: Increase critical hit chance by 10%.
-	- Enemy: +5% max health.
-
-- CLEAVE:
-	- Player: Bullets gain/increase AoE damage.
-	- Enemy: +10% movement speed.
+	- SAVAGE:
+		- Player: +15% damage to all attacks.
+		- Enemy: +10% spawn rate.
+	
+	- PRECISION:
+		- Player: Increase critical hit chance by 10%.
+		- Enemy: +5% max health.
+	
+	- CLEAVE:
+		- Player: Bullets gain/increase AoE damage.
+		- Enemy: +10% movement speed.
 
 #### Defensive:
 	- TBD:
